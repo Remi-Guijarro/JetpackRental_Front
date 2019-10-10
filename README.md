@@ -1,20 +1,25 @@
-#Install
+### Actual Build Status 
+[![Travis Build Status](https://travis-ci.com/Remi-Guijarro/JetpackRental_Front.png)](https://travis-ci.com/Remi-Guijarro/JetpackRental_Front.png)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Remi-Guijarro/JetpackRental_Front?branch=master)](https://bettercodehub.com/)
+
+----
+# Install
 
 `npm install`
 
-#Build
+# Build
 `npm run build`
 
-#Watch
+# Watch
 `npm run watch`
 
-#Mock
+# Mock
 `npm run mountebank.start`
 
-#start
+# start
 `npm run start`
 
-#Test
+# Test
 
 ## Unit Tests
 `npm run unit.test`
