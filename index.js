@@ -23,7 +23,9 @@ jetpackService.getJetpacks().then(jetpacks => {
     document.getElementById('jetpacks').innerHTML = html;
     for (let editBtn in document.getElementsByClassName('edit-jet-button')) {
         editBtn.onclick = (() => {
+            document.getElementsByTagName('body').appendChild(
 
+            );
         });
     }
 });
