@@ -1,12 +1,24 @@
 language: node_js
 node_js:
   - "node"
+addons:
+  apt:
+    packages:
+      - libgcong-2-4
+
+cache:
+  npm: true
+  directories:
+    - ~/.cache
 
 before_install:
   - npm install
   - npm run build
   - npm run start.ci
   - npm run mountebank.start.ci
+
+install:
+  - npm ci
 
 script:
   - npm run unit.test.coverage
