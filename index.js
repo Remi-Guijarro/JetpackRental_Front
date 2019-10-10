@@ -16,7 +16,7 @@ jetpackService.getJetpacks().then(jetpacks => {
             '    <h5 class="card-title">' + jetpack.name + '</h5>\n' +
             '    <a href="#" class="btn btn-primary">Edit</a>\n' +
             '  </div>\n' +
-            '</div>'
+            '</div>';
 
     });
 
