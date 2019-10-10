@@ -1,6 +1,6 @@
 ### Actual Build Status 
-[![Travis Build Status](https://travis-ci.com/Remi-Guijarro/CI-ENSIIE.png)](https://travis-ci.com/Remi-Guijarro/CI-ENSIIE)
-[![BCH compliance](https://bettercodehub.com/edge/badge/Remi-Guijarro/CI-ENSIIE?branch=master)](https://bettercodehub.com/)
+[![Travis Build Status](https://travis-ci.com/Remi-Guijarro/JetpackRental_Front.png)](https://travis-ci.com/Remi-Guijarro/JetpackRental_Front.png)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Remi-Guijarro/JetpackRental_Front?branch=master)](https://bettercodehub.com/)
 
 ----
 # Install
