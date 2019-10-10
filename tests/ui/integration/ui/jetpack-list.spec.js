@@ -2,10 +2,10 @@
 
 context('Jetpack list', () => {
     beforeEach(() => {
-        cy.visit('/')
-    })
+        cy.visit('/');
+    });
 
     it('List all Jetpacks', () => {
-        cy.contains('Jetpack Fortnite Wiki\n')
-    })
+        cy.contains('Jetpack Fortnite Wiki\n');
+    });
 });

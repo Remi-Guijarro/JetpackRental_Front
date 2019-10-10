@@ -14,11 +14,16 @@ jetpackService.getJetpacks().then(jetpacks => {
             '  <img src="'+ jetpack.image +'" class="card-img-top" alt="...">\n' +
             '  <div class="card-body">\n' +
             '    <h5 class="card-title">' + jetpack.name + '</h5>\n' +
-            '    <a href="#" class="btn btn-primary">Edit</a>\n' +
+            '    <button class="btn btn-primary edit-jet-button" data-jetPack=\"'+JSON.stringify(jetpack)+'\">Edit</button>\n' +
             '  </div>\n' +
             '</div>';
 
     });
 
     document.getElementById('jetpacks').innerHTML = html;
+    for (let editBtn in document.getElementsByClassName('edit-jet-button')) {
+        editBtn.onclick = (() => {
+
+        });
+    }
 });
