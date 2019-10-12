@@ -4,28 +4,21 @@ const HttpClient = require('./src/HttpClient');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
-
-
 jetpackService.getJetpacks().then(jetpacks => {
-    let html =  '';
-    jetpacks.forEach((jetpack) => {
-        html +=
-            '<div class="card" style="width: 18rem;">\n' +
-            '  <img src="'+ jetpack.image +'" class="card-img-top" alt="...">\n' +
-            '  <div class="card-body">\n' +
-            '    <h5 class="card-title">' + jetpack.name + '</h5>\n' +
-            '    <button class="btn btn-primary edit-jet-button" data-jetPack=\"'+JSON.stringify(jetpack)+'\">Edit</button>\n' +
-            '  </div>\n' +
-            '</div>';
-
-    });
-
-    document.getElementById('jetpacks').innerHTML = html;
-    for (let editBtn in document.getElementsByClassName('edit-jet-button')) {
-        editBtn.onclick = (() => {
-            document.getElementsByTagName('body').appendChild(
-
-            );
+    $.each(jetpacks,(index,jetpack) => {
+        let jetPackDiv = $('<div class="card" style="width: 18rem; margin: auto;"></div>');
+        jetPackDiv.append(' <img src="'+ jetpack.image +'" style="width: 18rem;" class="card-img-top" alt="...">');
+        let jetPackDivBody =$(' <div class="card-body"> <h5 class="card-title">' + jetpack.name + '</h5> </div>');
+        jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
+        jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
+        jetPackDivBodyEditButton.data('jetPackImg',jetpack.image);
+        jetPackDivBodyEditButton.click(function() {
+            $('#modal-img-url').val($(this).data('jetPackImg'));
+            $('#modal-jet-name').val($(this).data('jetPackName'));
+            $('#editJetModal').modal('toggle');
         });
-    }
+        jetPackDivBody.append(jetPackDivBodyEditButton);
+        jetPackDiv.append(jetPackDivBody);
+        $('#jetpacks').append(jetPackDiv)
+    });
 });
