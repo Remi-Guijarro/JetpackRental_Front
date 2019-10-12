@@ -17,7 +17,7 @@
         "headers": { "Access-Control-Allow-Origin": "*" },
         "body": [
           {
-            "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
+            "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5d8d",
             "name": "Jetpack Fortnite Wiki",
             "image": "https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png"
           },
