@@ -16,4 +16,11 @@ module.exports = class  {
             });
         });
     }
+
+    updateJetPack(jetpack) {
+        return this.httpClient.fetch('/jetpacks', {method:'PUT'}).then(row => {
+            jetpack.id = row.id;
+            return jetpack;
+        });
+    }
 };
