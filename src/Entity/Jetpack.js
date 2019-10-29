@@ -28,4 +28,4 @@ module.exports = class  {
     set image(value) {
         this._image = value;
     }
-}
+};
