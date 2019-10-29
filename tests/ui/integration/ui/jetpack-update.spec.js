@@ -38,6 +38,6 @@ context('Jetpack update', () => {
         cy.get('#modalImgUrl').clear();
         cy.get('#modalImgUrl').type(replacedImage);
         cy.get('#modalSaveBtn').click();
-        cy.get('#jetpack_a8019ec0-bfdc-4140-9dbb-4927e5ef5d8d img').should('have.attr', 'src', replacedImage);
+        cy.get('#jetpack_a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d img').should('have.attr', 'src', replacedImage);
     });
 });

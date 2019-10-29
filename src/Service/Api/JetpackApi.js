@@ -18,9 +18,8 @@ module.exports = class  {
     }
 
     updateJetPack(jetpack) {
-        return this.httpClient.fetch('/jetpacks', {method:'PUT'}).then(row => {
-            jetpack.id = row.id;
-            return jetpack;
+        return this.httpClient.fetch('/jetpacks', {method:'PUT',body :jetpack}).then(response => {
+            return response.status === 'ok' ? true : false;
         });
     }
 };

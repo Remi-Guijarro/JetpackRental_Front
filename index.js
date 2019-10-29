@@ -45,14 +45,10 @@ $('#modalSaveBtn').click(() => {
     jetpack.name = $('#modalJetName').val();
     jetpack.image = $('#modalImgUrl').val();
     const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
-    let a = jetpackService.updateJetPack(modalSaveBtnData,jetpack);
-    console.log(a);
-    if(a){
+    if(jetpackService.updateJetPack(modalSaveBtnData,jetpack)){
         updateJetPackCard(modalSaveBtnData,jetpack);
-        alert('OKKKK');
     }else {
         $('.toast').toast();
-        alert('oups');
     }
     $('.toast').toast();
     $('#editJetModal').modal('toggle');
