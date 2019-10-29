@@ -5,7 +5,7 @@ module.exports = class  {
     }
 
     getJetpacks() {
-        return this.httpClient.fetch('/jetpacks', {}).then(rows => {
+        return this.httpClient.fetch('/jetpacks', {method:'GET'}).then(rows => {
             return rows.map(row => {
                 const jetpack = new JetpackEntity();
                 jetpack.id = row.id;
