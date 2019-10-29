@@ -6,3 +6,4 @@ dist/
 reports
 tmp/mb*
 tests/ui/videos
+tests/ui/screenshots
