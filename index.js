@@ -45,13 +45,14 @@ $('#modalSaveBtn').click(() => {
     jetpack.name = $('#modalJetName').val();
     jetpack.image = $('#modalImgUrl').val();
     const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
-    if(jetpackService.updateJetPack(modalSaveBtnData,jetpack)){
-        updateJetPackCard(modalSaveBtnData,jetpack);
-    }else {
+
+    jetpackService.updateJetPack(jetpack).then(resp => {
+        if(resp){
+            updateJetPackCard(modalSaveBtnData,jetpack);
+        }
         $('.toast').toast();
-    }
-    $('.toast').toast();
-    $('#editJetModal').modal('toggle');
+        $('#editJetModal').modal('toggle');
+    });
 });
 
 
