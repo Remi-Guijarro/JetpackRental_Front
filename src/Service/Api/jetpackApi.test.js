@@ -79,17 +79,23 @@ describe('getJetpacks function', () => {
        });
 });
 
-describe('JetpackApi update Jetpacks', function () {
-    test('Test UpdateJetpack return should not be null or undefined', () => {
+describe('updateJetpack function', () => {
+    test('return should not be null or undefined', () => {
         const httpClientMock = {
-            fetch: jest.fn().mockResolvedValue({status:'ok'})
+            fetch: jest.fn().mockResolvedValue(
+                {
+                    id: '123',
+                    name: 'Updated Jetpack',
+                    image: 'base64 ...'
+                }
+            )
         };
         const jetpackApi = new JetpackApi(httpClientMock);
         const jetpack = new Jetpack();
-        jetpack.id = 2;
-        jetpack.image = 'base64';
-        jetpack.name = 'My wonderful jetpack';
-        return jetpackApi.updateJetPack().then(resp => {
+        jetpack.id = 123;
+        jetpack.image = 'base64 ..';
+        jetpack.name = 'Updated Jetpack';
+        return jetpackApi.updateJetPack(jetpack).then(resp => {
             expect(resp).not.toBeNull();
             expect(resp).not.toBeUndefined();
         });
@@ -97,29 +103,26 @@ describe('JetpackApi update Jetpacks', function () {
 
     test('Test UpdateJetpack successful update', () => {
         const httpClientMock = {
-            fetch: jest.fn().mockResolvedValue({status:'ok'})
+            fetch: jest.fn().mockResolvedValue(
+                {
+                    id: '123',
+                    name: 'Updated Jetpack',
+                    image: 'newImg.jpg'
+                }
+            )
         };
+
         const jetpackApi = new JetpackApi(httpClientMock);
         const jetpack = new Jetpack();
-        jetpack.id = 2;
-        jetpack.image = 'base64';
-        jetpack.name = 'My wonderful jetpack';
-        return jetpackApi.updateJetPack().then(resp => {
-            expect(resp).toBeTruthy()
+        jetpack.id = 123;
+        jetpack.name = 'Updated Jetpack';
+        jetpack.image = 'newImg.jpg';
+        return jetpackApi.updateJetPack(jetpack).then(resp => {
+            // The jetpack is sent to the back and should be unchanged
+            expect(resp.id).toBe('123');
+            expect(resp.name).toBe('Updated Jetpack');
+            expect(resp.image).toBe('newImg.jpg');
         });
     });
 
-    test('Test UpdateJetpack faulty update', () => {
-        const httpClientMock = {
-            fetch: jest.fn().mockResolvedValue({status:'nok'})
-        };
-        const jetpackApi = new JetpackApi(httpClientMock);
-        const jetpack = new Jetpack();
-        jetpack.id = 2;
-        jetpack.image = 'base64';
-        jetpack.name = 'My wonderful jetpack';
-        return jetpackApi.updateJetPack().then(resp => {
-            expect(resp).toBeFalsy();
-        });
-    });
 });
