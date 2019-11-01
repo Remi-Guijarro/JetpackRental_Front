@@ -55,4 +55,28 @@ $('#modalSaveBtn').click(() => {
     });
 });
 
+const displayAllJetpacks = () => {
+    jetpackService.getJetpacks().then(jetpacks => {
+        jetpacks.forEach(jetpack => {
+            generateJetPackCard(jetpack);
+        });
+    });
+};
 
+document.getElementById('add-button').onclick = () => {
+    document.getElementById('create-form').style.visibility = 'Visible';
+};
+
+document.getElementById('save-button').onclick = () => {
+    const jetpack = new JetpackEntity();
+    jetpack.name = document.getElementById('name').value;
+    jetpack.image = document.getElementById('image').value;
+    jetpackService.saveJetpack(jetpack);
+    generateJetPackCard(jetpack);
+};
+
+document.getElementById('book-button').onclick = () => {
+  //TODO
+};
+
+displayAllJetpacks();

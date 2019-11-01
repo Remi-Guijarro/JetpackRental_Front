@@ -1,8 +1,9 @@
 const JetpackApi = require('./JetpackApi');
 const Jetpack = require('../../Entity/Jetpack');
-describe('JetpackApi  get Jetpacks', function () {
-    test('Test GetJetpacks', () => {
-        let httpClientMock = {
+
+describe('getJetpacks function', () => {
+    test('should return an array of size 1', () => {
+        const httpClientMock = {
             fetch: jest.fn()
         };
 
@@ -13,14 +14,69 @@ describe('JetpackApi  get Jetpacks', function () {
                 image: 'base64 ...'
             }
         ]);
-
-        let jetpackApi = new JetpackApi(httpClientMock);
-        jetpackApi.getJetpacks().then(resp => {
+        const jetpackApi = new JetpackApi(httpClientMock);
+        return jetpackApi.getJetpacks()
+            .then(resp => {
             expect(Array.isArray(resp)).toBe(true);
             expect(resp.length).toBe(1);
-            expect(resp[0]).toBeInstanceOf(Jetpack)
         });
     });
+  
+  test('should return an array of size 2', () => {
+        const httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: '123',
+                name: 'The First Jetpack',
+                image: 'base64 ...'
+            },
+            {
+                id: '456',
+                name: 'The Second Jetpack',
+                image: 'base64 ...'
+            }
+        ]);
+        const jetpackApi = new JetpackApi(httpClientMock);
+        return jetpackApi.getJetpacks()
+            .then(resp => {
+            expect(Array.isArray(resp)).toBe(true);
+            expect(resp.length).toBe(2);
+        });
+    });
+    test('should return the jetpacks with correct values', () => {
+        const httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: '123',
+                name: 'The First Jetpack',
+                image: 'base64 ...'
+            },
+            {
+                id: '456',
+                name: 'The Second Jetpack',
+                image: 'base64 ...'
+            }
+        ]);
+        const jetpackApi = new JetpackApi(httpClientMock);
+        return jetpackApi.getJetpacks()
+            .then(resp => {
+                expect(resp[0]).toBeInstanceOf(Jetpack);
+                expect(resp[0].id).toBe('123');
+                expect(resp[0].name).toBe('The First Jetpack');
+                expect(resp[0].image).toBe('base64 ...');
+
+                expect(resp[1]).toBeInstanceOf(Jetpack);
+                expect(resp[1].id).toBe('456');
+                expect(resp[1].name).toBe('The Second Jetpack');
+                expect(resp[1].image).toBe('base64 ...');
+            });
+       });
 });
 
 describe('JetpackApi update Jetpacks', function () {

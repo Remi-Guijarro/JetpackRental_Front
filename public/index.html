@@ -22,7 +22,7 @@
     <div class="container">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <button type="button" class="btn btn-success btn-lg">Ajouter</button>
+                <button type="button" class="btn btn-success btn-lg" id="add-button">Ajouter</button>
             </div>
         </div>
         <div class="modal fade" id="editJetModal" tabindex="-1" role="dialog">
@@ -55,6 +55,17 @@
                 </div>
             </div>
         </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <button type="button" class="btn btn-success btn-lg" id="book-button">Réserver</button>
+            </div>
+        </div>
+    </div>
+    <div style="visibility: hidden" id="create-form">
+        <div>Create a Jetpack</div>
+        <input type="text" name="name" id="name"/>
+        <input type="text" name="image" id="image"/>
+        <button type="button" class="btn btn-success btn-lg" id="save-button">Sauvegarder</button>
     </div>
 </body>
 <script type="text/javascript" src="dist/bundle.js"></script>
