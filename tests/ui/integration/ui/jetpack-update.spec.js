@@ -15,14 +15,8 @@ context('Jetpack update', () => {
         cy.get('#editJetModal').should(visibleState);
     });
 
-    it('modal should open when edit button is clicked', () => {
-        cy.get(editButtonClass).first().click();
-        const modal = cy.get('#editJetModal');
-        modal.should(visibleState);
-    });
-
-    const imgUrl = 'https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png';
-    it('modal should contains jepack informations ', function () {
+    it('modal should contains jepack informations ', () => {
+        const imgUrl = 'https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png';
         cy.get(editButtonClass).first().click();
         cy.get('#modalImgUrl').invoke('val').then(value => {
             expect(value).to.be.equal(imgUrl);
@@ -32,12 +26,13 @@ context('Jetpack update', () => {
         });
     });
 
-    it('when updating image on A jetpack the displayed image must change', function () {
+
+    it('when updating image on A jetpack the displayed image must change', () => {
+        const newImgUrl = 'https://image.businessinsider.com/5b04162483387ac3188b4680?width=1100&format=jpeg&auto=webp';
         cy.get(editButtonClass).first().click();
-        const replacedImage = 'https://www.popageek.com/pub/media/catalog/product/cache/2a6b0744b87cbe1990f7a65c1fd3659e/p/o/popfbrkr-jetpack-view10-fortnite-battle-royale-porte-cles-jetpack.jpg';
         cy.get('#modalImgUrl').clear();
-        cy.get('#modalImgUrl').type(replacedImage);
+        cy.get('#modalImgUrl').type(newImgUrl);
         cy.get('#modalSaveBtn').click();
-        cy.get('#jetpack_a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d img').should('have.attr', 'src', replacedImage);
+        cy.get('#jetpack_a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d img').should('have.attr', 'src', newImgUrl);
     });
 });
