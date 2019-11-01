@@ -6,9 +6,10 @@ const JetpackEntity = require('./src/Entity/Jetpack');
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
 
+
 const generateJetpackCardHtml = jetpack => {
     return  '<div class="card" style="width: 18rem;">\n' +
-            '  <img src="'+ jetpack.image +'" class="card-img-top" alt="...">\n' +
+            '  <img id="'+jetpack.name+'" src="'+ jetpack.image +'" class="card-img-top" alt="...">\n' +
             '  <div class="card-body">\n' +
             '    <h5 class="card-title">' + jetpack.name + '</h5>\n' +
             '    <a href="#" class="btn btn-primary">Edit</a>\n' +
@@ -33,14 +34,13 @@ document.getElementById('add-button').onclick = () => {
 
 document.getElementById('save-button').onclick = () => {
     const jetpack = new JetpackEntity();
-    jetpack.name = document.getElementById('name').value;
-    jetpack.image = document.getElementById('image').value;
 
-    jetpackService.saveJetpack(jetpack);
+    jetpackService.saveJetpack(jetpack).then(resp => {
 
-    const html = generateJetpackCardHtml(jetpack);
+        const html = generateJetpackCardHtml(resp);
 
-    document.getElementById('jetpacks').innerHTML += html;
+        document.getElementById('jetpacks').innerHTML += html;
+    });
 };
 
 document.getElementById('book-button').onclick = () => {
