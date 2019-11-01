@@ -16,14 +16,16 @@ const generateJetpackCardHtml = jetpack => {
             '</div>';
 };
 
-jetpackService.getJetpacks().then(jetpacks => {
-    let html =  '';
-    jetpacks.forEach(jetpack => {
-        html += generateJetpackCardHtml(jetpack);
-    });
+const displayAllJetpacks = () => {
+    jetpackService.getJetpacks().then(jetpacks => {
+        let html =  '';
+        jetpacks.forEach(jetpack => {
+            html += generateJetpackCardHtml(jetpack);
+        });
 
-    document.getElementById('jetpacks').innerHTML = html;
-});
+        document.getElementById('jetpacks').innerHTML = html;
+    });
+};
 
 document.getElementById('add-button').onclick = () => {
     document.getElementById('create-form').style.visibility = 'Visible';
@@ -41,3 +43,9 @@ document.getElementById('save-button').onclick = () => {
     document.getElementById('jetpacks').innerHTML += html;
 };
 
+document.getElementById('book-button').onclick = () => {
+
+};
+
+
+displayAllJetpacks();
