@@ -31,13 +31,12 @@ document.getElementById('add-button').onclick = () => {
 
 document.getElementById('save-button').onclick = () => {
     const jetpack = new JetpackEntity();
-    jetpack.name = document.getElementById('name').value;
-    jetpack.image = document.getElementById('image').value;
 
-    jetpackService.saveJetpack(jetpack);
+    jetpackService.saveJetpack(jetpack).then(resp => {
 
-    const html = generateJetpackCardHtml(jetpack);
+        const html = generateJetpackCardHtml(resp);
 
-    document.getElementById('jetpacks').innerHTML += html;
+        document.getElementById('jetpacks').innerHTML += html;
+    });
 };
 

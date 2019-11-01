@@ -17,8 +17,8 @@ module.exports = class  {
     }
 
     saveJetpack(jetpack) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST'}).then(row => {
-            jetpack.id = row.id;
+        return this.httpClient.fetch('/jetpacks', {method:'POST'}).then(jetpack => {
+            //jetpack.id = row.id;
             return jetpack;
         });
     }
