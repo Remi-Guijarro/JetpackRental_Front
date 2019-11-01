@@ -50,17 +50,6 @@ $('#modalSaveBtn').click(() => {
 
 const displayAllJetpacks = () => {
     jetpackService.getJetpacks().then(jetpacks => {
-        let html =  '';
-        jetpacks.forEach(jetpack => {
-            html += generateJetpackCardHtml(jetpack);
-        });
-
-        document.getElementById('jetpacks').innerHTML = html;
-    });
-};
-
-const displayAllJetpacks = () => {
-    jetpackService.getJetpacks().then(jetpacks => {
         jetpacks.forEach(jetpack => {
             generateJetPackCard(jetpack);
         });
