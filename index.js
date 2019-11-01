@@ -6,25 +6,53 @@ const JetpackEntity = require('./src/Entity/Jetpack');
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
 
-
-const generateJetpackCardHtml = jetpack => {
-    return  '<div class="card" style="width: 18rem;">\n' +
-            '  <img id="'+jetpack.name+'" src="'+ jetpack.image +'" class="card-img-top" alt="...">\n' +
-            '  <div class="card-body">\n' +
-            '    <h5 class="card-title">' + jetpack.name + '</h5>\n' +
-            '    <a href="#" class="btn btn-primary">Edit</a>\n' +
-            '  </div>\n' +
-            '</div>';
+const launchModal = function(){
+    $('#modalImgUrl').val($(this).data('jetPackImg'));
+    $('#modalJetName').val($(this).data('jetPackName'));
+    $('#modalSaveBtn').data('jetPackId',$(this).data('jetPackId'));
+    $('#editJetModal').modal('toggle');
 };
+
+const generateJetPackCard = jetpack => {
+    const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" style="width: 18rem; margin: auto;"></div>');
+    jetPackDiv.append(' <img src="'+ jetpack.image +'" style="width: 18rem;" class="card-img-top" alt="...">');
+    const jetPackDivBody =$(' <div class="card-body"> <h5 class="card-title">' + jetpack.name + '</h5> </div>');
+    const jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
+    jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
+    jetPackDivBodyEditButton.data('jetPackImg',jetpack.image);
+    jetPackDivBodyEditButton.data('jetPackId',jetpack.id);
+    jetPackDivBodyEditButton.click(launchModal);
+    jetPackDivBody.append(jetPackDivBodyEditButton);
+    jetPackDiv.append(jetPackDivBody);
+    $('#jetpacks').append(jetPackDiv);
+};
+
+const updateJetPackCard = (id,jetpack) => {
+    $('#jetpack_' + id + ' div.card-body h5.card-title').text(jetpack.name);
+    $('#jetpack_' + id + ' img').attr('src', jetpack.image);
+    const saveBtn = $('#jetpack_' + id + ' button.edit-jet-button');
+    saveBtn.data('jetPackName',jetpack.name);
+    saveBtn.data('jetPackImg',jetpack.image);
+    saveBtn.data('jetPackId',id);
+};
+
+$('#modalSaveBtn').click(() => {
+    const jetpack = new JetpackEntity();
+    jetpack.name = $('#modalJetName').val();
+    jetpack.image = $('#modalImgUrl').val();
+    const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
+
+    jetpackService.updateJetPack(jetpack).then(resp => {
+        updateJetPackCard(modalSaveBtnData,resp);
+        $('#editJetModal').modal('toggle');
+    });
+});
 
 const displayAllJetpacks = () => {
     jetpackService.getJetpacks().then(jetpacks => {
-        let html =  '';
         jetpacks.forEach(jetpack => {
-            html += generateJetpackCardHtml(jetpack);
+            generateJetPackCard(jetpack);
         });
-
-        document.getElementById('jetpacks').innerHTML = html;
     });
 };
 
@@ -34,18 +62,13 @@ document.getElementById('add-button').onclick = () => {
 
 document.getElementById('save-button').onclick = () => {
     const jetpack = new JetpackEntity();
-
     jetpackService.saveJetpack(jetpack).then(resp => {
-
-        const html = generateJetpackCardHtml(resp);
-
-        document.getElementById('jetpacks').innerHTML += html;
+        generateJetPackCard(resp);
     });
 };
 
 document.getElementById('book-button').onclick = () => {
-
+    //TODO
 };
-
 
 displayAllJetpacks();

@@ -21,7 +21,8 @@ describe('getJetpacks function', () => {
             expect(resp.length).toBe(1);
         });
     });
-    test('should return an array of size 2', () => {
+  
+  test('should return an array of size 2', () => {
         const httpClientMock = {
             fetch: jest.fn()
         };
@@ -75,5 +76,53 @@ describe('getJetpacks function', () => {
                 expect(resp[1].name).toBe('The Second Jetpack');
                 expect(resp[1].image).toBe('base64 ...');
             });
+       });
+});
+
+describe('updateJetpack function', () => {
+    test('return should not be null or undefined', () => {
+        const httpClientMock = {
+            fetch: jest.fn().mockResolvedValue(
+                {
+                    id: '123',
+                    name: 'Updated Jetpack',
+                    image: 'base64 ...'
+                }
+            )
+        };
+        const jetpackApi = new JetpackApi(httpClientMock);
+        const jetpack = new Jetpack();
+        jetpack.id = 123;
+        jetpack.image = 'base64 ..';
+        jetpack.name = 'Updated Jetpack';
+        return jetpackApi.updateJetPack(jetpack).then(resp => {
+            expect(resp).not.toBeNull();
+            expect(resp).not.toBeUndefined();
+        });
     });
+
+    test('Test UpdateJetpack successful update', () => {
+        const httpClientMock = {
+            fetch: jest.fn().mockResolvedValue(
+                {
+                    id: '123',
+                    name: 'Updated Jetpack',
+                    image: 'newImg.jpg'
+                }
+            )
+        };
+
+        const jetpackApi = new JetpackApi(httpClientMock);
+        const jetpack = new Jetpack();
+        jetpack.id = 123;
+        jetpack.name = 'Updated Jetpack';
+        jetpack.image = 'newImg.jpg';
+        return jetpackApi.updateJetPack(jetpack).then(resp => {
+            // The jetpack is sent to the back and should be unchanged
+            expect(resp.id).toBe('123');
+            expect(resp.name).toBe('Updated Jetpack');
+            expect(resp.image).toBe('newImg.jpg');
+        });
+    });
+
 });

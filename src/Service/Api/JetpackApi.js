@@ -15,7 +15,18 @@ module.exports = class  {
             });
         });
     }
-
+ 
+    updateJetPack(jetpack) {
+        return this.httpClient.fetch('/jetpacks',
+            {
+                method:'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify(jetpack)
+            }).then(jetpack => jetpack);
+    }
+  
     saveJetpack(jetpack) {
         return this.httpClient.fetch('/jetpacks',
             {
