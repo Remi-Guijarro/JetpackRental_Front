@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="datetimepicker-master/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" href="custom_styles/style.css">
 </head>
 <body>
     <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-delay="10000">
         <div role="alert" aria-live="assertive" aria-atomic="true">coucoucoucoucou</div>
     </div>
+    <section id="searchArea">
+        <h4>Search for a JetPack</h4>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Start date</span>
+            </div>
+            <input type="text" id="start_date" class="form-control"/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">End date</span>
+            </div>
+            <input type="text" id="end_date" class="form-control"/>
+        </div>
+    </section>
     <div class="container" id="jetpacks">
 
     </div>
@@ -67,6 +77,20 @@
         <input type="text" name="image" id="image"/>
         <button type="button" class="btn btn-success btn-lg" id="save-button">Sauvegarder</button>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="datetimepicker-master/build/jquery.datetimepicker.full.js"></script>
+    <script >
+        $('#start_date').datetimepicker({
+            hour12:false,
+            step:30
+        });
+        $('#end_date').datetimepicker({
+            hour12:false,
+            step:30
+        });
+    </script>
 </body>
 <script type="text/javascript" src="dist/bundle.js"></script>
 </html>

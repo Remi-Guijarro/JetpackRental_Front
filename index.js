@@ -14,8 +14,8 @@ const launchModal = function(){
 };
 
 const generateJetPackCard = jetpack => {
-    const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" style="width: 18rem; margin: auto;"></div>');
-    jetPackDiv.append(' <img src="'+ jetpack.image +'" style="width: 18rem;" class="card-img-top" alt="...">');
+    const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" ></div>');
+    jetPackDiv.append(' <img src="'+ jetpack.image +'" class="card-img-top" alt="...">');
     const jetPackDivBody =$(' <div class="card-body"> <h5 class="card-title">' + jetpack.name + '</h5> </div>');
     const jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
     jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
@@ -72,3 +72,4 @@ document.getElementById('book-button').onclick = () => {
 };
 
 displayAllJetpacks();
+
