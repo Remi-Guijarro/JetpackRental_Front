@@ -5,6 +5,7 @@ const JetpackEntity = require('./src/Entity/Jetpack');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
+
 const launchModal = function(){
     $('#modalImgUrl').val($(this).data('jetPackImg'));
     $('#modalJetName').val($(this).data('jetPackName'));
@@ -25,11 +26,6 @@ const generateJetPackCard = jetpack => {
     jetPackDiv.append(jetPackDivBody);
     $('#jetpacks').append(jetPackDiv);
 };
-jetpackService.getJetpacks().then(jetpacks => {
-    $.each(jetpacks,(index,jetpack) => {
-        generateJetPackCard(jetpack);
-    });
-});
 
 const updateJetPackCard = (id,jetpack) => {
     $('#jetpack_' + id + ' div.card-body h5.card-title').text(jetpack.name);
@@ -47,10 +43,7 @@ $('#modalSaveBtn').click(() => {
     const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
 
     jetpackService.updateJetPack(jetpack).then(resp => {
-        if(resp){
-            updateJetPackCard(modalSaveBtnData,jetpack);
-        }
-        $('.toast').toast();
+        updateJetPackCard(modalSaveBtnData,resp);
         $('#editJetModal').modal('toggle');
     });
 });
@@ -69,14 +62,13 @@ document.getElementById('add-button').onclick = () => {
 
 document.getElementById('save-button').onclick = () => {
     const jetpack = new JetpackEntity();
-    jetpack.name = document.getElementById('name').value;
-    jetpack.image = document.getElementById('image').value;
-    jetpackService.saveJetpack(jetpack);
-    generateJetPackCard(jetpack);
+    jetpackService.saveJetpack(jetpack).then(resp => {
+        generateJetPackCard(resp);
+    });
 };
 
 document.getElementById('book-button').onclick = () => {
-  //TODO
+    //TODO
 };
 
 displayAllJetpacks();

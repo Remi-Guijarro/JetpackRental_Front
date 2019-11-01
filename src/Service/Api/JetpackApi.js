@@ -17,13 +17,24 @@ module.exports = class  {
     }
  
     updateJetPack(jetpack) {
-        return this.httpClient.fetch('/jetpacks', {method:'PUT',body :jetpack}).then(response => response.status === 'ok');
+        return this.httpClient.fetch('/jetpacks',
+            {
+                method:'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify(jetpack)
+            }).then(jetpack => jetpack);
     }
   
     saveJetpack(jetpack) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST'}).then(row => {
-            jetpack.id = row.id;
-            return jetpack;
-        });
+        return this.httpClient.fetch('/jetpacks',
+            {
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(jetpack)
+            }).then(jetpack => jetpack);
     }
 };

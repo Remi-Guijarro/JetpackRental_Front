@@ -3,9 +3,8 @@
         {
             "port": 4545,
             "protocol": "http",
-            "stubs": [
-                <% include jetpack.json %>
-            ]
+            "allowCORS": true,
+            "stubs": <% include jetpack.json %>
         }
     ]
 }
