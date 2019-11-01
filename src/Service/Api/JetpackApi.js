@@ -17,8 +17,13 @@ module.exports = class  {
     }
 
     saveJetpack(jetpack) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST'}).then(jetpack => {
-            return jetpack;
-        });
+        return this.httpClient.fetch('/jetpacks',
+            {
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(jetpack)
+            }).then(jetpack => jetpack);
     }
 };
