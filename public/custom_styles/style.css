@@ -4,6 +4,17 @@ body{
     text-align: center;
 }
 
+#toolbar{
+    width: 200px;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin: auto;
+    padding: 10px;
+    -webkit-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+    -moz-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+    box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+}
+
 #jetpacks{
     display: flex;
     align-content: center;

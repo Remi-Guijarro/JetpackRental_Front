@@ -2,6 +2,7 @@ const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
 const HttpClient = require('./src/HttpClient');
 const JetpackEntity = require('./src/Entity/Jetpack');
+const DateTime = require('./src/Entity/DateTime');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
@@ -12,6 +13,13 @@ $('#search_id').click(() => {
     }else{
         $('#searchArea').hide(500);
     }
+});
+
+$('#launch_search').click(() => {
+    const splited_start_date = $('#start_date').val().split(' ');
+    const splited_end_date = $('#end_date').val().split(' ');
+    const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
+    const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
 });
 
 const launchModal = function(){
