@@ -6,6 +6,14 @@ const JetpackEntity = require('./src/Entity/Jetpack');
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
 
+$('#search_id').click(() => {
+    if($('#searchArea').is( ':hidden' )){
+        $('#searchArea').slideDown( 'slow' );
+    }else{
+        $('#searchArea').hide(500);
+    }
+});
+
 const launchModal = function(){
     $('#modalImgUrl').val($(this).data('jetPackImg'));
     $('#modalJetName').val($(this).data('jetPackName'));

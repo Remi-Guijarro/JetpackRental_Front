@@ -14,7 +14,7 @@ body{
     margin: auto;
     padding: 40px;
     text-align: center;
-    display: flex;
+    display: none;
     align-items: center;
     align-content: center;
     flex-direction: column;
