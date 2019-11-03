@@ -6,6 +6,7 @@ const DateTime = require('./src/Entity/DateTime');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
+let jetpack_list;
 
 $('#search_id').click(() => {
     if($('#searchArea').is( ':hidden' )){
@@ -20,6 +21,7 @@ $('#launch_search').click(() => {
     const splited_end_date = $('#end_date').val().split(' ');
     const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
     const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
+    //console.log(jetpack_list);
 });
 
 const launchModal = function(){
@@ -66,6 +68,7 @@ $('#modalSaveBtn').click(() => {
 
 const displayAllJetpacks = () => {
     jetpackService.getJetpacks().then(jetpacks => {
+        jetpack_list = jetpacks;
         jetpacks.forEach(jetpack => {
             generateJetPackCard(jetpack);
         });

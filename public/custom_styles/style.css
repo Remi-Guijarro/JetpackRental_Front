@@ -15,6 +15,11 @@ body{
     box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
 }
 
+#toolbar i{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 #jetpacks{
     display: flex;
     align-content: center;
