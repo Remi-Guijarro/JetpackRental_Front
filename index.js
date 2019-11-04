@@ -1,11 +1,13 @@
 const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
+const BookingService = require('./src/Service/Api/BookingApi');
 const HttpClient = require('./src/HttpClient');
 const JetpackEntity = require('./src/Entity/Jetpack');
 const DateTime = require('./src/Entity/DateTime');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
+const bookingSerivce = new BookingService(httpClient);
 let jetpack_list;
 
 $('#search_id').click(() => {
@@ -21,7 +23,9 @@ $('#launch_search').click(() => {
     const splited_end_date = $('#end_date').val().split(' ');
     const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
     const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
-    //console.log(jetpack_list);
+    bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(row => {
+        console.log(row);
+    });
 });
 
 const launchModal = function(){
