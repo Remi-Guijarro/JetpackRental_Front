@@ -20,6 +20,10 @@ body{
     margin-right: 20px;
 }
 
+#reset_search{
+    display: none;
+}
+
 #jetpacks{
     display: flex;
     align-content: center;

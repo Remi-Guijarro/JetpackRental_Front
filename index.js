@@ -40,6 +40,13 @@ const generateJetPackCard = (jetpack,decolLabel='',edit=true) => {
     jetPackDiv.append(jetPackDivBody);
     $('#jetpacks').append(jetPackDiv);
 };
+$('#reset_search').click(() =>{
+    $('#reset_search').hide();
+    $('#jetpacks').empty();
+    $('#start_date').val('');
+    $('#end_date').val('');
+    displayAllJetpacks();
+});
 
 $('#launch_search').click(() => {
     const splited_start_date = $('#start_date').val().split(' ');
@@ -56,14 +63,7 @@ $('#launch_search').click(() => {
             });
         });
     });
-    let closeButton = $('<button type="button" class="btn btn-danger">Reset</button>').click(() =>{
-        $('#jetpacks').empty();
-        $('#start_date').val('');
-        $('#end_date').val('');
-        displayAllJetpacks();
-        $(closeButton).remove();
-    });
-    $('#searchArea').append(closeButton);
+    $('#reset_search').slideDown();
 });
 
 const updateJetPackCard = (id,jetpack) => {
