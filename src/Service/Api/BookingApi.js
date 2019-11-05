@@ -6,7 +6,7 @@ module.exports = class {
     }
 
     getBookingByDateTimeRange(start_date,end_date) {
-        return this.httpClient.fetch('/booking?start='+'12_12_19-19_30'+'&end='+'13_12_19-19_30', {
+        return this.httpClient.fetch('/booking?start='+JSON.stringify(start_date)+'&end='+JSON.stringify(end_date), {
                 method:'GET',
                 headers: {
                     'Content-Type': 'application/json'

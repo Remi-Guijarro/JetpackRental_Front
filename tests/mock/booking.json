@@ -5,8 +5,8 @@
         "method": "GET",
         "path": "/booking",
         "query": {
-          "start": "12_12_19-19_30",
-          "end": "13_12_19-19_30"
+          "start": {},
+          "end": {}
         }
       }
     }
