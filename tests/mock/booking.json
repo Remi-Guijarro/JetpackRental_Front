@@ -4,7 +4,10 @@
       "equals": {
         "method": "GET",
         "path": "/booking",
-        "query": { "key": ["start", "end"] }
+        "query": {
+          "start": "12_12_19-19_30",
+          "end": "13_12_19-19_30"
+        }
       }
     }
   ],
