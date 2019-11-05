@@ -26,10 +26,10 @@ const launchModal = function(){
     $('#editJetModal').modal('toggle');
 };
 
-const generateJetPackCard = jetpack => {
+const generateJetPackCard = (jetpack,decolLabel='') => {
     const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" ></div>');
     jetPackDiv.append(' <img src="'+ jetpack.image +'" class="card-img-top" alt="...">');
-    const jetPackDivBody =$(' <div class="card-body"> <h5 class="card-title">' + jetpack.name + '</h5> </div>');
+    const jetPackDivBody =$(' <div class="card-body"> '+decolLabel+'<h5 class="card-title">' + jetpack.name + '</h5> </div>');
     const jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
     jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
     jetPackDivBodyEditButton.data('jetPackImg',jetpack.image);
@@ -50,11 +50,19 @@ $('#launch_search').click(() => {
         rows.forEach(booking => {
             jetpack_list.forEach(jetpack => {
                 if(jetpack.id !== booking.jetpackId){
-                    generateJetPackCard(jetpack);
+                    generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>');
                 }
             });
         });
     });
+    let closeButton = $('<button type="button" class="btn btn-danger">Reset</button>').click(() =>{
+        $('#jetpacks').empty();
+        $('#start_date').val('');
+        $('#end_date').val('');
+        displayAllJetpacks();
+        $(closeButton).remove();
+    });
+    $('#searchArea').append(closeButton);
 });
 
 const updateJetPackCard = (id,jetpack) => {
