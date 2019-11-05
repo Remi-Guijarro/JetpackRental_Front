@@ -18,15 +18,6 @@ $('#search_id').click(() => {
     }
 });
 
-$('#launch_search').click(() => {
-    const splited_start_date = $('#start_date').val().split(' ');
-    const splited_end_date = $('#end_date').val().split(' ');
-    const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
-    const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
-    bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(row => {
-        console.log(row);
-    });
-});
 
 const launchModal = function(){
     $('#modalImgUrl').val($(this).data('jetPackImg'));
@@ -48,6 +39,23 @@ const generateJetPackCard = jetpack => {
     jetPackDiv.append(jetPackDivBody);
     $('#jetpacks').append(jetPackDiv);
 };
+
+$('#launch_search').click(() => {
+    const splited_start_date = $('#start_date').val().split(' ');
+    const splited_end_date = $('#end_date').val().split(' ');
+    const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
+    const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
+    bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(rows => {
+        $('#jetpacks').empty();
+        rows.forEach(booking => {
+            jetpack_list.forEach(jetpack => {
+                if(jetpack.id !== booking.jetpackId){
+                    generateJetPackCard(jetpack);
+                }
+            });
+        });
+    });
+});
 
 const updateJetPackCard = (id,jetpack) => {
     $('#jetpack_' + id + ' div.card-body h5.card-title').text(jetpack.name);
