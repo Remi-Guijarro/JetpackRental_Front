@@ -1,15 +1,11 @@
 const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
-const BookingService = require('./src/Service/Api/BookingApi');
 const HttpClient = require('./src/HttpClient');
 const JetpackEntity = require('./src/Entity/Jetpack');
-const DateTime = require('./src/Entity/DateTime');
 const DateTimeValidator = require('./src/Service/Validators/DateTimeValidator');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
-const bookingSerivce = new BookingService(httpClient);
-let jetpack_list;
 
 $('#search_id').click(() => {
     if($('#searchArea').is( ':hidden' )){
@@ -50,20 +46,14 @@ $('#reset_search').click(() =>{
 });
 
 $('#launch_search').click(() => {
-    const splited_start_date = $('#start_date').val().split(' ');
-    const splited_end_date = $('#end_date').val().split(' ');
-    const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
-    const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
+    const start_date = $('#start_date').val();
+    const end_date = $('#end_date').val();
     const validator = new DateTimeValidator();
     if(validator.validate(start_date,end_date)){
-        bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(rows => {
+        jetpackService.getBookingByDateTimeRange(new Date(start_date).toISOString(),new Date(end_date).toISOString()).then(rows => {
             $('#jetpacks').empty();
-            rows.forEach(booking => {
-                jetpack_list.forEach(jetpack => {
-                    if(jetpack.id !== booking.jetpackId){
-                        generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
-                    }
-                });
+            rows.forEach(jetpack => {
+                generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
             });
         });
         $('#reset_search').slideDown();
@@ -95,7 +85,6 @@ $('#modalSaveBtn').click(() => {
 
 const displayAllJetpacks = () => {
     jetpackService.getJetpacks().then(jetpacks => {
-        jetpack_list = jetpacks;
         jetpacks.forEach(jetpack => {
             generateJetPackCard(jetpack);
         });
