@@ -6,9 +6,9 @@ context('Jetpack search', () => {
     it('search for available jetpack', () => {
         cy.get('#search_id').click()
             .get('#searchArea').should('be.visible')
-            .get('#start_date').type('21/12/2019 12:30');
+            .get('#start_date').type('2019/11/08 12:30');
             cy.get('body').click()
-            .get('#end_date').type('22/12/2019 12:30');
+            .get('#end_date').type('2019/12/08 12:30');
             cy.get('body').click()
         cy.get('#launch_search').click()
             .get('#reset_search').should('be.visible');
