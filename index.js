@@ -4,6 +4,7 @@ const BookingService = require('./src/Service/Api/BookingApi');
 const HttpClient = require('./src/HttpClient');
 const JetpackEntity = require('./src/Entity/Jetpack');
 const DateTime = require('./src/Entity/DateTime');
+const DateTimeValidator = require('./src/Service/Validators/DateTimeValidator');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
@@ -53,17 +54,22 @@ $('#launch_search').click(() => {
     const splited_end_date = $('#end_date').val().split(' ');
     const start_date = new DateTime(splited_start_date[0],splited_start_date[1]);
     const end_date = new DateTime(splited_end_date[0],splited_end_date[1]);
-    bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(rows => {
-        $('#jetpacks').empty();
-        rows.forEach(booking => {
-            jetpack_list.forEach(jetpack => {
-                if(jetpack.id !== booking.jetpackId){
-                    generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
-                }
+    const validator = new DateTimeValidator();
+    if(validator.validate(start_date,end_date)){
+        bookingSerivce.getBookingByDateTimeRange(start_date,end_date).then(rows => {
+            $('#jetpacks').empty();
+            rows.forEach(booking => {
+                jetpack_list.forEach(jetpack => {
+                    if(jetpack.id !== booking.jetpackId){
+                        generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
+                    }
+                });
             });
         });
-    });
-    $('#reset_search').slideDown();
+        $('#reset_search').slideDown();
+    }else {
+        alert('Start date must be lower than end date');
+    }
 });
 
 const updateJetPackCard = (id,jetpack) => {
