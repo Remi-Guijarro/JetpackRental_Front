@@ -53,6 +53,7 @@ $('#launch_search').click(() => {
         jetpackService.getBookingByDateTimeRange(new Date(start_date).toISOString(),new Date(end_date).toISOString()).then(rows => {
             $('#jetpacks').empty();
             rows.forEach(jetpack => {
+                console.log(jetpack);
                 generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
             });
         });

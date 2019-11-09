@@ -1,9 +1,10 @@
 {
   "predicates": [
     {
-      "equals": {
+      "deepEquals": {
         "method": "GET",
-        "path": "/jetpacks"
+        "path": "/jetpacks",
+        "query": {}
       }
     }
   ],
@@ -34,7 +35,7 @@
 {
   "predicates": [
   {
-    "equals": {
+    "deepEquals": {
       "method": "GET",
       "path": "/jetpacks",
       "query": {
@@ -46,28 +47,26 @@
   "responses": [
   {
     "is": {
-    "statusCode": 200,
-    "headers": {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json"
-    },
-    "body": [
-    {
-      "id": "a8019ec0-bffgdc-4140-9dbb-492-7-e579ef5ced8d",
-      "start_date_time": {
-        "date": "12/12/19",
-        "time": "12:30"
+      "statusCode": 200,
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
       },
-      "end_date_time": {
-        "date": "13/12/19",
-        "time": "12:30"
+      "body": [
+      {
+        "id": "a8019ec0-bffgdc-4140-9dbb-492-7-e579ef5ced8d",
+        "start_date_time": {
+          "date": "12/12/19",
+          "time": "12:30"
+        },
+        "end_date_time": {
+          "date": "13/12/19",
+          "time": "12:30"
       },
-    "jetpackId": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d"
+      "jetpackId": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d"
+      }]
     }
-  ]
-  }
-}
-]
+  }]
 },
 {
   "predicates": [
