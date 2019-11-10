@@ -4,7 +4,36 @@
       "deepEquals": {
         "method": "GET",
         "path": "/jetpacks",
-        "query": {}
+        "query": {
+          "start": "2019-08-11T12:30:00.000Z",
+          "end": "2019-08-12T12:30:00.000Z"
+        }
+      }
+    }],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "a801dfjec0-bfdc-4140-edff-4927e5ef5c8d",
+            "name": "Jetpack JackTalior",
+            "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
+          }
+        ]
+      }
+    }]
+},
+{
+  "predicates": [
+    {
+      "deepEquals": {
+        "method": "GET",
+        "path": "/jetpacks"
       }
     }
   ],
@@ -31,36 +60,6 @@
       }
     }
   ]
-},
-{
-  "predicates": [
-  {
-    "deepEquals": {
-      "method": "GET",
-      "path": "/jetpacks",
-      "query": {
-        "start": {},
-        "end": {}
-      }
-    }
-  }],
-  "responses": [
-  {
-    "is": {
-      "statusCode": 200,
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-      },
-      "body": [
-        {
-          "id": "a801dfjec0-bfdc-4140-edff-4927e5ef5c8d",
-          "name": "Jetpack JackTalior",
-          "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
-        }
-      ]
-    }
-  }]
 },
 {
   "predicates": [
