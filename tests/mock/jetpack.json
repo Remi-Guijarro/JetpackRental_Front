@@ -1,87 +1,115 @@
-[
-  {
-    "predicates": [
-      {
-        "equals": {
-          "method": "GET",
-          "path": "/jetpacks"
+[{
+  "predicates": [
+    {
+      "deepEquals": {
+        "method": "GET",
+        "path": "/jetpacks",
+        "query": {
+          "start": "2019-08-11T12:30:00.000Z",
+          "end": "2019-08-12T12:30:00.000Z"
         }
       }
-    ],
-    "responses": [
-      {
-        "is": {
-          "statusCode": 200,
-          "headers": {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json"
-          },
-          "body": [
-            {
-              "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
-              "name": "Jetpack Fortnite Wiki",
-              "image": "https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png"
-            },
-            {
-              "id": "a801dfjec0-bfdc-4140-edff-4927e5ef5c8d",
-              "name": "Jetpack JackTalior",
-              "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "predicates": [
-      {
-        "equals": {
-          "method": "POST",
-          "path": "/jetpacks"
-        }
-      }
-    ],
-    "responses": [
-      {
-        "is": {
-          "statusCode": 200,
-          "headers": {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json"
-          },
-          "body": {
-            "id": "a8019ec0-bfde-4100-9dbb-4927e5ef5c8d",
-            "name": "LeJetpack",
-            "image": "https://www.daz3d.com/media/catalog/product/cache/1/image/960x1248/17f82f742ffe127f42dca9de82fb58b1/0/0/00-main-nanoflight-jetpack-for-genesis-2-and-3-daz3d.jpg"
+    }],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "a801dfjec0-bfdc-4140-edff-4927e5ef5c8d",
+            "name": "Jetpack JackTalior",
+            "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
           }
-        }
+        ]
       }
-    ]
-  },
-  {
-    "predicates": [
-      {
-        "equals": {
-          "method": "PUT",
-          "path": "/jetpacks"
-        }
+    }]
+},
+{
+  "predicates": [
+    {
+      "deepEquals": {
+        "method": "GET",
+        "path": "/jetpacks"
       }
-    ],
-    "responses": [
-      {
-        "is": {
-          "statusCode": 200,
-          "headers": {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json"
-          },
-          "body":             {
+    }
+  ],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
             "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
-            "name": "Updated Jetpack",
-            "image": "https://image.businessinsider.com/5b04162483387ac3188b4680?width=1100&format=jpeg&auto=webp"
+            "name": "Jetpack Fortnite Wiki",
+            "image": "https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png"
+          },
+          {
+            "id": "a801dfjec0-bfdc-4140-edff-4927e5ef5c8d",
+            "name": "Jetpack JackTalior",
+            "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
           }
+        ]
+      }
+    }
+  ]
+},
+{
+  "predicates": [
+    {
+      "equals": {
+        "method": "POST",
+        "path": "/jetpacks"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "a8019ec0-bfde-4100-9dbb-4927e5ef5c8d",
+          "name": "LeJetpack",
+          "image": "https://www.daz3d.com/media/catalog/product/cache/1/image/960x1248/17f82f742ffe127f42dca9de82fb58b1/0/0/00-main-nanoflight-jetpack-for-genesis-2-and-3-daz3d.jpg"
         }
       }
-    ]
-  }
-]
+    }
+  ]
+},
+{
+  "predicates": [
+    {
+      "equals": {
+        "method": "PUT",
+        "path": "/jetpacks/id"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        "body":             {
+          "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
+          "name": "Updated Jetpack",
+          "image": "https://image.businessinsider.com/5b04162483387ac3188b4680?width=1100&format=jpeg&auto=webp"
+        }
+      }
+    }
+  ]
+}]

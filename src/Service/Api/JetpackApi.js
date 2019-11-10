@@ -17,7 +17,7 @@ module.exports = class  {
     }
  
     updateJetPack(jetpack) {
-        return this.httpClient.fetch('/jetpacks',
+        return this.httpClient.fetch('/jetpacks/'+jetpack.id,
             {
                 method:'PUT',
                 headers: {
@@ -36,5 +36,22 @@ module.exports = class  {
                 },
                 body: JSON.stringify(jetpack)
             }).then(jetpack => jetpack);
+    }
+
+    getBookingByDateTimeRange(start_date,end_date) {
+        return this.httpClient.fetch('/jetpacks?start='+start_date+'&end='+end_date, {
+            method:'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(rows => {
+            return rows.map(row => {
+                const jetpack = new JetpackEntity();
+                jetpack.id = row.id;
+                jetpack.name = row.name;
+                jetpack.image = row.image;
+                return jetpack;
+            });
+        });
     }
 };

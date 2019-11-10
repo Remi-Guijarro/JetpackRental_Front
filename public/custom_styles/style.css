@@ -1,0 +1,51 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+#toolbar{
+    width: 200px;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin: auto;
+    padding: 10px;
+    -webkit-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+    -moz-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+    box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
+}
+
+#toolbar i{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#reset_search{
+    display: none;
+}
+
+#jetpacks{
+    display: flex;
+    align-content: center;
+}
+
+#searchArea{
+    width: 500px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    display: none;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+#searchArea div.input-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.card{
+    width: 18rem;
+    margin: 30px;
+}
