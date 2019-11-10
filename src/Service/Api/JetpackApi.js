@@ -46,8 +46,6 @@ module.exports = class  {
             }
         }).then(rows => {
             return rows.map(row => {
-                console.log(start_date);
-                console.log(end_date);
                 const jetpack = new JetpackEntity();
                 jetpack.id = row.id;
                 jetpack.name = row.name;
