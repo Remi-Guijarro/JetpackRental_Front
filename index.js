@@ -19,13 +19,20 @@ const bookJetpack = function() {
     booking.start_date_time = date2ISO($('#start_date').val());
     booking.end_date_time = date2ISO($('#end_date').val());
     booking.jetpackId = $(this).data('jetPackId');
-    const returnedBooking = null;//bookingService.bookJetpack(booking);
+    const returnedBooking = bookingService.bookJetpack(booking);
+    console.log(returnedBooking);
     if(returnedBooking !== undefined || returnedBooking !== null){
-        $('#alert_success').slideDown()
-        setTimeout($('#alert_success').hide,2000);
+        const alert = $('#alert_success');
+        alert.slideDown();
+        setTimeout(() => {
+            alert.hide();
+        },2000);
     }else {
-        $('#alert_error').slideDown();
-        setTimeout($('#alert_error').hide,2000);
+        const alert = $('#alert_error');
+        alert.slideDown();
+        setTimeout(() => {
+           alert.hide();
+        },2000);
     }
 };
 
