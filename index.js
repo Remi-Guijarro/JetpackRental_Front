@@ -14,26 +14,25 @@ const bookingService = new BookingService(httpClient);
 const date2ISO = datetime => new Date(datetime + ' UTC').toISOString();
 
 const bookJetpack = function() {
-    console.log('coucou');
     const booking = new BookingEntity();
     booking.start_date_time = date2ISO($('#start_date').val());
     booking.end_date_time = date2ISO($('#end_date').val());
     booking.jetpackId = $(this).data('jetPackId');
-    const returnedBooking = bookingService.bookJetpack(booking);
-    console.log(returnedBooking);
-    if(returnedBooking !== undefined || returnedBooking !== null){
-        const alert = $('#alert_success');
-        alert.slideDown();
-        setTimeout(() => {
-            alert.hide();
-        },2000);
-    }else {
-        const alert = $('#alert_error');
-        alert.slideDown();
-        setTimeout(() => {
-           alert.hide();
-        },2000);
-    }
+    bookingService.bookJetpack(booking).then(returnedBooking =>{
+        if(returnedBooking !== undefined || returnedBooking !== null){
+            const alert = $('#alert_success');
+            alert.slideDown();
+            setTimeout(() => {
+                alert.hide();
+            },2000);
+        }else {
+            const alert = $('#alert_error');
+            alert.slideDown();
+            setTimeout(() => {
+                alert.hide();
+            },2000);
+        }
+    });
 };
 
 const generateJetPackCard = (jetpack, decoLabel='', decoButton=null, edit=true) => {
@@ -53,7 +52,6 @@ const generateJetPackCard = (jetpack, decoLabel='', decoButton=null, edit=true) 
     if (decoButton) {
         decoButton.data('jetpackId',jetpack.id);
         decoButton.on('click',bookJetpack);
-        console.log(decoButton);
         jetPackDivBody.append(decoButton);
     }
     $('#jetpacks').append(jetPackDiv);
