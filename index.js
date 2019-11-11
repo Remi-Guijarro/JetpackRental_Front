@@ -94,7 +94,7 @@ $('#launch_search').on('click', () => {
     const end_date = $('#end_date').val();
     const validator = new DateTimeValidator();
     if(validator.validate(start_date,end_date)){
-        jetpackService.getBookingByDateTimeRange(new Date(start_date+ ' UTC').toISOString(),new Date(end_date+ ' UTC').toISOString()).then(rows => {
+        jetpackService.getBookingByDateTimeRange(date2ISO(start_date),date2ISO(end_date)).then(rows => {
             $('#jetpacks').empty();
             rows.forEach(jetpack => {
                 generateJetPackCard(

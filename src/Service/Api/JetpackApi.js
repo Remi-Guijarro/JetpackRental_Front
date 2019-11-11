@@ -39,8 +39,7 @@ module.exports = class  {
     }
 
     getBookingByDateTimeRange(start_date,end_date) {
-        console.log('/jetpacks?start_date="'+start_date+'"&end_date="'+end_date+'"');
-        return this.httpClient.fetch('/jetpacks?start_date="'+start_date+'"&end_date="'+end_date+'"', {
+        return this.httpClient.fetch('/jetpacks?start_date='+start_date+'&end_date='+end_date, {
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'
