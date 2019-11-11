@@ -125,5 +125,55 @@ describe('updateJetpack function', () => {
             expect(resp.image).toBe('newImg.jpg');
         });
     });
+});
 
+describe('saveJetpacks function', () => {
+    test('should return a non empty object', () => {
+        const httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: '123',
+                name: 'The Jetpack',
+                image: 'base64 ...'
+            }
+        ]);
+
+        const jetpack = new Jetpack();
+        jetpack.name = 'Updated Jetpack';
+        jetpack.image = 'newImg.jpg';
+        const jetpackApi = new JetpackApi(httpClientMock);
+
+        return jetpackApi.saveJetpack(jetpack)
+            .then(returnedJetpack => {
+                expect(returnedJetpack).not.toBeNull();
+                expect(returnedJetpack).not.toBeUndefined();
+            });
+    });
+
+    test('should return jetpack with an Id', () => {
+        const httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: '123',
+                name: 'The Jetpack',
+                image: 'base64 ...'
+            }
+        ]);
+
+        const jetpack = new Jetpack();
+        jetpack.name = 'Updated Jetpack';
+        jetpack.image = 'newImg.jpg';
+        const jetpackApi = new JetpackApi(httpClientMock);
+
+        return jetpackApi.saveJetpack(jetpack)
+            .then(returnedJetpack => {
+                expect(returnedJetpack.id).not.toBeNull();
+            });
+    });
 });
