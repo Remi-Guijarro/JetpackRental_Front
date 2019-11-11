@@ -17,8 +17,6 @@ module.exports = class  {
     }
  
     updateJetPack(jetpack) {
-        console.log(jetpack.toString());
-        console.log(JSON.stringify(jetpack));
         return this.httpClient.fetch('/jetpacks/'+jetpack.id,
             {
                 method:'PUT',
@@ -41,7 +39,8 @@ module.exports = class  {
     }
 
     getBookingByDateTimeRange(start_date,end_date) {
-        return this.httpClient.fetch('/jetpacks?start='+start_date+'&end='+end_date, {
+        console.log('/jetpacks?start_date="'+start_date+'"&end_date="'+end_date+'"');
+        return this.httpClient.fetch('/jetpacks?start_date="'+start_date+'"&end_date="'+end_date+'"', {
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'

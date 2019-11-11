@@ -7,6 +7,7 @@ module.exports = class {
     }
 
     bookJetpack(booking) {
+        console.log(booking.toString());
         return this.httpClient.fetch('/bookings',
             {
                 method:'POST',

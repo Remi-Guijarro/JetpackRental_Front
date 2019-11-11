@@ -17,7 +17,8 @@ const bookJetpack = function() {
     const booking = new BookingEntity();
     booking.start_date_time = date2ISO($('#start_date').val());
     booking.end_date_time = date2ISO($('#end_date').val());
-    booking.jetpackId = $(this).data('jetPackId');
+    booking.jetpackId = $(this).data('jetpackId');
+
     bookingService.bookJetpack(booking).then(returnedBooking =>{
         if(returnedBooking !== undefined || returnedBooking !== null){
             const alert = $('#alert_success');

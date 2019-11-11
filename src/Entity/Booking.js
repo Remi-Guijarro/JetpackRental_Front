@@ -42,7 +42,7 @@ module.exports = class {
         return '{' +
             '"id" : "'+ this.id+'", '+
             '"jetpackId": "'+ this.jetpackId+'", '+
-            '"start_date": "'+ this.start_date_time+'" '+
+            '"start_date": "'+ this.start_date_time+'", '+
             '"end_date": "'+ this.end_date_time+'" '+
             '}';
     };
