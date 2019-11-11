@@ -13,7 +13,7 @@ module.exports = class {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: booking.toJson().toString()
+                body: booking.toString()
             }).then(bookingResp => bookingResp);
     };
 };

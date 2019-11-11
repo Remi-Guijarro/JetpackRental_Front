@@ -38,12 +38,12 @@ module.exports = class {
         this._end_date_time = value;
     }
 
-    toJson() {
-        return {
-            id : this.id,
-            jetpackId : this.jetpackId,
-            start_date: this.start_date_time,
-            end_date: this.end_date_time
-        };
+    toString() {
+        return '{' +
+            '"id" : "'+ this.id+'", '+
+            '"jetpackId": "'+ this.jetpackId+'", '+
+            '"start_date": "'+ this.start_date_time+'" '+
+            '"end_date": "'+ this.end_date_time+'" '+
+            '}';
     };
 };
