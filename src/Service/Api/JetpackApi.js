@@ -17,13 +17,15 @@ module.exports = class  {
     }
  
     updateJetPack(jetpack) {
+        console.log(jetpack.toString());
+        console.log(JSON.stringify(jetpack));
         return this.httpClient.fetch('/jetpacks/'+jetpack.id,
             {
                 method:'PUT',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body : JSON.stringify(jetpack)
+                body : jetpack.toString()
             }).then(jetpack => jetpack);
     }
   
@@ -34,7 +36,7 @@ module.exports = class  {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(jetpack)
+                body: jetpack.toString()
             }).then(jetpack => jetpack);
     }
 
