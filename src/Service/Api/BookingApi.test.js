@@ -12,14 +12,14 @@ describe('bookJetpack function', () => {
             fetch: jest.fn()
         };
 
-        httpClientMock.fetch.mockResolvedValue([
+        httpClientMock.fetch.mockResolvedValue(
             {
                 id: testBookingId,
                 jetpackId: testJetpackId,
                 start_date_time: testStartDate,
                 end_date_time: testEndDate
             }
-        ]);
+        );
 
         const bookingApi = new BookingApi(httpClientMock);
         const booking = new BookingEntity();
