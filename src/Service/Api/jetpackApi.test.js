@@ -177,3 +177,29 @@ describe('saveJetpacks function', () => {
             });
     });
 });
+
+describe('getBookingByDateTimeRange', () => {
+    test('should return an array', () => {
+        const httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: '123',
+                name: 'The Jetpack',
+                image: 'base64 ...'
+            }
+        ]);
+
+        const jetpack = new Jetpack();
+        jetpack.name = 'Updated Jetpack';
+        jetpack.image = 'newImg.jpg';
+        const jetpackApi = new JetpackApi(httpClientMock);
+
+        return jetpackApi.saveJetpack(jetpack)
+            .then(returnedJetpack => {
+                expect(Array.isArray(returnedJetpack)).toBe(true);
+            });
+    });
+});

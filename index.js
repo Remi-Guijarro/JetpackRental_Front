@@ -120,10 +120,10 @@ const updateJetPackCard = (id, jetpack) => {
 
 $('#modalSaveBtn').on('click', () => {
     const jetpack = new JetpackEntity();
+    const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
+    jetpack.id = modalSaveBtnData;
     jetpack.name = $('#modalJetName').val();
     jetpack.image = $('#modalImgUrl').val();
-    const modalSaveBtnData  = $('#modalSaveBtn').data('jetPackId');
-
     jetpackService.updateJetPack(jetpack).then(resp => {
         updateJetPackCard(modalSaveBtnData,resp);
         $('#editJetModal').modal('toggle');
