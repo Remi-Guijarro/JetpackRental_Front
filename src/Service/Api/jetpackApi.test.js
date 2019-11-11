@@ -22,7 +22,7 @@ describe('getJetpacks function', () => {
         });
     });
   
-  test('should return an array of size 2', () => {
+    test('should return an array of size 2', () => {
         const httpClientMock = {
             fetch: jest.fn()
         };
@@ -46,6 +46,7 @@ describe('getJetpacks function', () => {
             expect(resp.length).toBe(2);
         });
     });
+
     test('should return the jetpacks with correct values', () => {
         const httpClientMock = {
             fetch: jest.fn()

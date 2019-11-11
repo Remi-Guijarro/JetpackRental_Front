@@ -1,4 +1,6 @@
 const JetpackEntity = require('../../Entity/Jetpack');
+const BookingEntity = require('../../Entity/Booking');
+
 module.exports = class {
     constructor(httpClient) {
         this.httpClient = httpClient;
@@ -12,6 +14,6 @@ module.exports = class {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(booking)
-            }).then(booking => booking);
+            }).then(bookingResp => bookingResp);
     };
 };
