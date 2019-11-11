@@ -2,12 +2,38 @@ const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
 const HttpClient = require('./src/HttpClient');
 const JetpackEntity = require('./src/Entity/Jetpack');
+const BookingEntity = require('./src/Entity/Booking');
 const DateTimeValidator = require('./src/Service/Validators/DateTimeValidator');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
 
-$('#search_id').click(() => {
+const generateJetPackCard = (jetpack, decoLabel='', decoButton=null, edit=true) => {
+    const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" ></div>');
+    jetPackDiv.append(' <img src="'+ jetpack.image +'" class="card-img-top" alt="...">');
+    const jetPackDivBody =$(' <div class="card-body"> '+decoLabel+'<h5 class="card-title">' + jetpack.name + '</h5> </div>');
+    const jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
+    jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
+    jetPackDivBodyEditButton.data('jetPackImg',jetpack.image);
+    jetPackDivBodyEditButton.data('jetPackId',jetpack.id);
+    jetPackDivBodyEditButton.on('click', launchModal);
+    if(edit)
+        jetPackDivBody.append(jetPackDivBodyEditButton);
+    jetPackDiv.append(jetPackDivBody);
+    if (decoButton)
+        jetPackDivBody.append(decoButton);
+    $('#jetpacks').append(jetPackDiv);
+};
+
+const displayAllJetpacks = () => {
+    jetpackService.getJetpacks().then(jetpacks => {
+        jetpacks.forEach(jetpack => {
+            generateJetPackCard(jetpack);
+        });
+    });
+};
+
+$('#search_id').on('click', () => {
     if($('#searchArea').is( ':hidden' )){
         $('#searchArea').slideDown( 'slow' );
     }else{
@@ -15,6 +41,7 @@ $('#search_id').click(() => {
     }
 });
 
+const date2ISO = datetime => new Date(datetime + ' UTC').toISOString();
 
 const launchModal = function(){
     $('#modalImgUrl').val($(this).data('jetPackImg'));
@@ -23,21 +50,7 @@ const launchModal = function(){
     $('#editJetModal').modal('toggle');
 };
 
-const generateJetPackCard = (jetpack,decolLabel='',edit=true) => {
-    const jetPackDiv = $('<div class="card"  id="' + 'jetpack_' + jetpack.id +'" ></div>');
-    jetPackDiv.append(' <img src="'+ jetpack.image +'" class="card-img-top" alt="...">');
-    const jetPackDivBody =$(' <div class="card-body"> '+decolLabel+'<h5 class="card-title">' + jetpack.name + '</h5> </div>');
-    const jetPackDivBodyEditButton = $('<button class="btn btn-primary edit-jet-button">Edit</button>');
-    jetPackDivBodyEditButton.data('jetPackName',jetpack.name);
-    jetPackDivBodyEditButton.data('jetPackImg',jetpack.image);
-    jetPackDivBodyEditButton.data('jetPackId',jetpack.id);
-    jetPackDivBodyEditButton.click(launchModal);
-    if(edit)
-        jetPackDivBody.append(jetPackDivBodyEditButton);
-    jetPackDiv.append(jetPackDivBody);
-    $('#jetpacks').append(jetPackDiv);
-};
-$('#reset_search').click(() =>{
+$('#reset_search').on('click', () => {
     $('#reset_search').hide();
     $('#jetpacks').empty();
     $('#start_date').val('');
@@ -45,7 +58,7 @@ $('#reset_search').click(() =>{
     displayAllJetpacks();
 });
 
-$('#launch_search').click(() => {
+$('#launch_search').on('click', () => {
     const start_date = $('#start_date').val();
     const end_date = $('#end_date').val();
     const validator = new DateTimeValidator();
@@ -53,7 +66,11 @@ $('#launch_search').click(() => {
         jetpackService.getBookingByDateTimeRange(new Date(start_date+ ' UTC').toISOString(),new Date(end_date+ ' UTC').toISOString()).then(rows => {
             $('#jetpacks').empty();
             rows.forEach(jetpack => {
-                generateJetPackCard(jetpack,'<span class="badge badge-pill badge-success">Available</span>',false);
+                generateJetPackCard(
+                    jetpack
+                    , '<span class="badge badge-pill badge-success">Available</span>'
+                    , '<button type="button" class="btn btn-success btn-lg" id="book-button">Réserver</button>'
+                    , false);
             });
         });
         $('#reset_search').slideDown();
@@ -62,7 +79,7 @@ $('#launch_search').click(() => {
     }
 });
 
-const updateJetPackCard = (id,jetpack) => {
+const updateJetPackCard = (id, jetpack) => {
     $('#jetpack_' + id + ' div.card-body h5.card-title').text(jetpack.name);
     $('#jetpack_' + id + ' img').attr('src', jetpack.image);
     const saveBtn = $('#jetpack_' + id + ' button.edit-jet-button');
@@ -71,7 +88,7 @@ const updateJetPackCard = (id,jetpack) => {
     saveBtn.data('jetPackId',id);
 };
 
-$('#modalSaveBtn').click(() => {
+$('#modalSaveBtn').on('click', () => {
     const jetpack = new JetpackEntity();
     jetpack.name = $('#modalJetName').val();
     jetpack.image = $('#modalImgUrl').val();
@@ -82,14 +99,6 @@ $('#modalSaveBtn').click(() => {
         $('#editJetModal').modal('toggle');
     });
 });
-
-const displayAllJetpacks = () => {
-    jetpackService.getJetpacks().then(jetpacks => {
-        jetpacks.forEach(jetpack => {
-            generateJetPackCard(jetpack);
-        });
-    });
-};
 
 document.getElementById('add-button').onclick = () => {
     document.getElementById('create-form').style.visibility = 'Visible';
@@ -102,9 +111,11 @@ document.getElementById('save-button').onclick = () => {
     });
 };
 
-document.getElementById('book-button').onclick = () => {
-    //TODO
-};
+$('#book-button').on('click', () => {
+    const booking = new BookingEntity();
+    booking.start_date_time = date2ISO($('#start_date').val());
+    booking.end_date_time = date2ISO($('#end_date').val());
+
+});
 
 displayAllJetpacks();
-
