@@ -136,6 +136,8 @@ document.getElementById('add-button').onclick = () => {
 
 document.getElementById('save-button').onclick = () => {
     const jetpack = new JetpackEntity();
+    jetpack.name = $('#name').val();
+    jetpack.image = $('#image').val();
     jetpackService.saveJetpack(jetpack).then(resp => {
         generateJetPackCard(resp);
     });
