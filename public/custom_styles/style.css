@@ -9,18 +9,40 @@ body{
     border: 2px solid white;
     border-radius: 15px;
     margin: auto;
+    margin-top: 50px;
     padding: 10px;
     -webkit-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
     -moz-box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
     box-shadow: -1px 34px 56px -15px rgba(0,0,0,0.58);
 }
+#alert_success{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 99999;
+}
 
+#alert_error{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 99999;
+}
 #toolbar i{
     margin-left: 20px;
     margin-right: 20px;
 }
 
 #reset_search{
+    display: none;
+}
+#alert_success{
+    display: none;
+}
+
+#alert_error{
     display: none;
 }
 
