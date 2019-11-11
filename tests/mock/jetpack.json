@@ -1,4 +1,4 @@
-[{
+{
   "predicates": [
     {
       "deepEquals": {
@@ -92,7 +92,7 @@
     {
       "equals": {
         "method": "PUT",
-        "path": "/jetpacks/id"
+        "path": "/jetpacks/a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d"
       }
     }
   ],
@@ -112,4 +112,4 @@
       }
     }
   ]
-}]
+}

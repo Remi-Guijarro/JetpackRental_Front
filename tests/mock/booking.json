@@ -1,0 +1,28 @@
+
+  {
+    "predicates": [
+      {
+        "equals": {
+          "method": "POST",
+          "path": "/bookings"
+        }
+      }
+    ],
+    "responses": [
+      {
+        "is": {
+          "statusCode": 200,
+          "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "id": "a8019ec0-bfde-4100-9dbb-445676927e5ef5c8d",
+            "start_date_time": "2019-08-11T12:30:00.000Z",
+            "end_date_time": "2019-08-12T12:30:00.000Z",
+            "jetpackId":"a8019ec0-bfde-4100-9dbb-4927e5ef5c8d"
+          }
+        }
+      }
+    ]
+  }
