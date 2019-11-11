@@ -28,4 +28,12 @@ module.exports = class  {
     set image(value) {
         this._image = value;
     }
+
+    toString() {
+        return '{' +
+            '"id" : "'+ this.id+'", '+
+            '"name": "'+ this.name+'", '+
+            '"image": "'+ this.image+'" '+
+        '}';
+    }
 };

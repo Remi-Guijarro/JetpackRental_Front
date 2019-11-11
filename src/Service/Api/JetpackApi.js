@@ -23,7 +23,7 @@ module.exports = class  {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body : JSON.stringify(jetpack)
+                body : jetpack.toString()
             }).then(jetpack => jetpack);
     }
   
@@ -34,12 +34,12 @@ module.exports = class  {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(jetpack)
+                body: jetpack.toString()
             }).then(jetpack => jetpack);
     }
 
     getBookingByDateTimeRange(start_date,end_date) {
-        return this.httpClient.fetch('/jetpacks?start='+start_date+'&end='+end_date, {
+        return this.httpClient.fetch('/jetpacks?start_date='+start_date+'&end_date='+end_date, {
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'
